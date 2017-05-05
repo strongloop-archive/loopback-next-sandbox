@@ -4,6 +4,7 @@
   "description": "",
   "main": "index",
   "scripts": {
+    "start": "ts-node .",
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register"
   },
   "keywords": [],
