@@ -1,0 +1,17 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index",
+  "scripts": {
+    "start": "node .",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@loopback/testlab": "^4.0.0-alpha.2",
+    "mocha": "^3.3.0"
+  }
+}
