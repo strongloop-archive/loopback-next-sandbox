@@ -1,16 +1,9 @@
-import {SandboxApplication} from './application';
+import {Bootstrapper} from '@loopback/core';
+import {createApp} from './application';
 
-class Bootstrapper {
-  static async bootstrap() {
-    const app = new SandboxApplication();
-    try {
-      await app.start();
-      console.log('Application Info:', app.info());
-    } catch(err) {
-      console.log('Cannot start the app.', err);
-      process.exit(1);
-    }
-  }
+const bootstrapper = new Bootstrapper(createApp);
+try {
+  bootstrapper.boot();
+} catch(err) {
+  bootstrapper.error(err);
 }
-
-Bootstrapper.bootstrap();

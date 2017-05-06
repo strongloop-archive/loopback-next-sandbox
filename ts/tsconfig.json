@@ -4,7 +4,8 @@
     "target": "es6",
     "noImplicitAny": false,
     "sourceMap": true,
-    "outDir": "lib"
+    "outDir": "lib",
+    "experimentalDecorators": true
   },
   "compileOnSave": true
 }
