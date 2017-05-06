@@ -7,7 +7,7 @@ export class Role {
   constructor(private @authenticatedUser() user) {
   }
 
-  value() {
+  value(): string {
     return this.user.isAdmin ? 'admin' : 'default';
   }
 }

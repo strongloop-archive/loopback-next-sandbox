@@ -6,7 +6,7 @@ export const TODO_REPO = 'repositories.todo';
 export class TodoRepo {
   static key = TODO_REPO;
 
-  value() {
+  value(): Repository {
     return new Repository();
   }
 }

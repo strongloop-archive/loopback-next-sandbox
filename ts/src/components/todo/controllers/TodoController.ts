@@ -12,7 +12,7 @@ export class TodoController {
 
   @authenticate()
   @get('/my/todos')
-  getMyTodos() {
+  getMyTodos() { // add return type -- : Todos[]?
     return this.todos.find({
       where: {
         owner: this.user.id
@@ -22,7 +22,7 @@ export class TodoController {
 
   @role('admin')
   @get('/all/todos')
-  getAllTodos() {
+  getAllTodos() { // add return type -- : Todo[]?
     return this.todos.find();
   }
 }

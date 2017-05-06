@@ -6,7 +6,7 @@ export const USER_REPO = 'repositories.userRepo';
 export class UserRepo {
   static key = USER_REPO;
 
-  value() {
+  value(): Repository {
     return new Repository();
   }
 }
