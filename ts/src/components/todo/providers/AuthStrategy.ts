@@ -19,6 +19,6 @@ export class AuthStrategy {
 }
 
 interface User {
-  usernmae: string,
+  username: string,
   password: string
 }
