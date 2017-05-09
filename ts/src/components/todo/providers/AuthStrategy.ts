@@ -3,7 +3,7 @@ import {BasicStrategy} from 'passport-stragegy-basic'; // confirm
 import {userRepo} from './UserRepo';
 
 export class AuthStrategy {
-  static key =  AUTHENTICATION_STRATEGY; // 'authentication.strategy'
+  static key = AUTHENTICATION_STRATEGY; // 'authentication.strategy'
 
   constructor(private @userRepo() users) {
   }
