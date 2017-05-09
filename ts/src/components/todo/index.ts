@@ -4,7 +4,7 @@ import {UserRepo} from './providers/UserRepo';
 import {AuthStrategy} from './providers/AuthStrategy';
 import {Role} from './providers/Role';
 
-export class Todo {
+export class TodoComponent {
   controllers = [TodoController];
   providers = [TodoRepo, UserRepo, AuthStrategy, Role];
 }
