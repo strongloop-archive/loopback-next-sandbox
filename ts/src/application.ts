@@ -1,10 +1,8 @@
-import {Application, Server, Sequence, injectInvoke} from '@loopback/core';
+import {Application, Sequence, injectInvoke, injectSend} from '@loopback/core';
 import {Todo} from './components/todo';
-
-import {Compression, userRole} from '@loopback/compression';
 import {Authentication, injectUser, injectAuthenticate} from '@loopback/authentication';
 import {Authorization, injectAuthorize} from '@loopback/authorization';
-import {Rejection} from '@loopback/rejection';
+import {Rejection, injectReject} from '@loopback/rejection';
 
 export function createApp(): Application {
   return new Application({
