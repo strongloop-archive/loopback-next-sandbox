@@ -5,8 +5,6 @@ import {AuthStrategy} from './providers/AuthStrategy';
 import {Role} from './providers/Role';
 
 export class TodoComponent {
-  static key = 'component.todo';
-  
   controllers = [TodoController];
   providers = [TodoRepo, UserRepo, AuthStrategy, Role];
 }
