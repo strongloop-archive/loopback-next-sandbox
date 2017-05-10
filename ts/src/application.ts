@@ -9,7 +9,7 @@ import {Rejection} from '@loopback/rejection';
 export function createApp(): Application {
   return new Application({
     components: [Todo, Authentication, Authorization, Rejection],
-    sequence: TodoSequence
+    sequence: [TodoSequence]
   });
 };
 
