@@ -1,5 +1,5 @@
 import {AUTHENTICATION_STRATEGY} from '@loopback/authentication';
-import {BasicStrategy} from 'passport-stragegy-basic'; // confirm
+import {BasicStrategy} from 'passport-strategy-basic'; // confirm
 import {userRepo} from './UserRepo';
 
 export class AuthStrategy {
