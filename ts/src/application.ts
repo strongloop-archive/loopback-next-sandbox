@@ -17,6 +17,7 @@ class TodoSequence extends Sequence {
     public @injectParseArgs() parseArgs,
     public @injectAuthenticate() authenticate,
     public @injectAuthorize() authorize,
+    public @injectAuthorizeResult() authorizeResult,
     public @injectInvoke() invoke,
     public @injectSendResponse() sendResponse,
     public @injectSendError() sendError
@@ -40,14 +41,20 @@ class TodoSequence extends Sequence {
       // the parameters are not valid.
       const args = parseArgs(spec, request, pathParams);
 
-      // 3. Authorize the operation
-      // TODO(bajtos) how to pass target model id for owner-based ACLs?
+      // 3. Authorize the user should be able to invoke the operation
+      // These access controls operate on controller names,
+      // method names, user obj, and args
       await this.authorize(controllerName, methodName, user, args);
       
       // 5. Invoke the controller method
       const result = await this.invoke(controllerName, methodName, args);
-      
-      // 6. Serialize the result (typically to JSON) and write HTTP response data
+
+      // 6. Authorize the result should be sent to the user
+      // These access controls operate on normal access meta as well
+      // as the result
+      await this.authorizeResult(controllerName, methodName, user, args, result);
+
+      // 7. Serialize the result (typically to JSON) and write HTTP response data
       await this.sendResponse(result);
     } catch(err) {
       // Any of the steps above can fail the request
