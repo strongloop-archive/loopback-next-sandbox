@@ -26,27 +26,25 @@ class TodoSequence extends Sequence {
     try {
       // 1. Find the endpoint/route
       // Throws HttpErrors.NotFound when there is no route matching the request method and path
-      const {controllerName, methodName, spec, pathParams} = findRoute(request);
+      const {controllerName, methodName, spec, pathParams} = this.findRoute(request);
       
-      // 2. Authenticate & authorize
+      // 2. Authenticate and bind current user
       const user = await this.authenticate(request);
-      
-      // 3. Authorize the operation
-      // TODO(bajtos) how to pass target model id for owner-based ACLs?
-      await this.authorize(controllerName, methodName, user);
+
+      // Anything produced / determined during the sequence
+      // should be bound into the request context
+      this.context.bind('authentication.user').to(user);
       
       // 4. Parse (and validate!) the arguments
       // Throws HttpErrors.UnprocessableEntity when some of 
       // the parameters are not valid.
       const args = parseArgs(spec, request, pathParams);
+
+      // 3. Authorize the operation
+      // TODO(bajtos) how to pass target model id for owner-based ACLs?
+      await this.authorize(controllerName, methodName, user, args);
       
       // 5. Invoke the controller method
-      // TODO(bajtos) how to pass the current user?
-      // Especially when this Sequence.run() wants to change
-      // the current user, in which case any bindings made by 
-      // this.authenticate() are bound to a wrong value.
-      // I would do the following:
-      //    const result = await this.invoke(controllerName, methodName, args, user);
       const result = await this.invoke(controllerName, methodName, args);
       
       // 6. Serialize the result (typically to JSON) and write HTTP response data
