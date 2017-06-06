@@ -45,7 +45,7 @@ class TodoSequence extends Sequence {
       // These access controls operate on controller names,
       // method names, user obj, and args
       await this.authorize(controllerName, methodName, user, args);
-      
+
       // 5. Invoke the controller method
       const result = await this.invoke(controllerName, methodName, args);
 
