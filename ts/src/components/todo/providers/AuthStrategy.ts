@@ -1,14 +1,11 @@
-import {AUTHENTICATION_STRATEGY} from '@loopback/authentication';
 import {BasicStrategy} from 'passport-strategy-basic'; // confirm
 import {userRepo} from './UserRepo';
 
-export class AuthStrategy {
-  static key = AUTHENTICATION_STRATEGY; // 'authentication.strategy'
-
+export class AuthStrategy implements Provider {
   constructor(private @userRepo() users) {
   }
 
-  value(): User {
+  value(): BasicStrategy {
     return new BasicStrategy(async (username, password) => {
       const user = await this.users.findById(username);
       if (user.password === password) {
@@ -16,9 +13,4 @@ export class AuthStrategy {
       }
     });
   }
-}
-
-interface User {
-  username: string,
-  password: string
 }

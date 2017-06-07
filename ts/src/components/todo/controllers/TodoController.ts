@@ -1,13 +1,14 @@
-import {authenticate, authenticatedUser} from '@loopback/authentication';
+import {authenticate, authenticatedUser, User} from '@loopback/authentication';
 import {role} from '@loopback/authorization';
 import {todoRepo} from '../providers/TodoRepo';
 import {get} from '@loopback/core';
 
 export class TodoController {
   constructor(
-    private @authenticatedUser() user,
-    private @todoRepo() todos
+    private @authenticatedUser() user : User,
+    private @inject(TodoRepo) todos : TodoRepo
   ) {
+    this.todos = new TodoRepository()
   }
 
   @authenticate()
