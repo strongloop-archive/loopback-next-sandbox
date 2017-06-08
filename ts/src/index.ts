@@ -3,5 +3,5 @@ import http from 'http'
 import https from 'https'
 
 const app = createApp();
-http.createServer(app.handleHttp({httpsRedirect: true})).listen(80);
-https.createServer(app.handleHttps()).listen(443);
+http.createServer(app.httpHandler({httpsRedirect: true})).listen(80);
+https.createServer(app.httpsHandler()).listen(443);
